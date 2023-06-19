@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SampleAPI.DTO;
 using SampleAPI.Model;
 using SampleAPI.Repository;
 
@@ -9,10 +11,13 @@ namespace SampleAPI.Controllers;
 public class ClienteController : ControllerBase
 {
     private  readonly AppDbContext _repository;
+    private  readonly IMapper _mapper;
 
-    public ClienteController(AppDbContext appDbContext)
+    public ClienteController(AppDbContext appDbContext,
+    IMapper mapper)
     {
         _repository = appDbContext;
+        _mapper = mapper;
     }
 
     [HttpPatch]
@@ -31,7 +36,7 @@ public class ClienteController : ControllerBase
             if (result > 0) {
                 return Ok();
             }
-            
+
             return BadRequest();
         }
         catch (Exception ex)
@@ -62,10 +67,12 @@ public class ClienteController : ControllerBase
 
     [HttpPost]
     [Route("/cliente")]
-    public IActionResult Post([FromBody]Cliente model)
+    public IActionResult Post([FromBody]ClienteDTO clienteDTO)
     {
         try
         {
+            var model = _mapper.Map<Cliente>(clienteDTO);
+
             _repository.Clientes.Add(model);
             var result = _repository.SaveChanges();
             if (result > 0) {

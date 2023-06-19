@@ -7,14 +7,9 @@ public class Contato {
   
     public int Id { get; set; }
     public String Valor { get; set; }
-
-
-    //Foreign Key para Cliente
-    public int ClienteId { get; set; }
-    [ForeignKey("ClienteId")] 
+    public int ClienteId { get; set; } 
     public Cliente Cliente{ get; set; }
     
-
 }
 
 public enum EContato {

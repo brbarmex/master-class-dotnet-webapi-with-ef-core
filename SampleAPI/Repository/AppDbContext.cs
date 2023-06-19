@@ -22,6 +22,17 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<Cliente>()
+            .HasMany(c => c.Contatos)
+            .WithOne(co => co.Cliente)
+            .HasForeignKey(co => co.ClienteId);
+
+        modelBuilder.Entity<Cliente>()
+            .HasOne(c => c.Endereco)
+            .WithOne(e => e.Cliente)
+            .HasForeignKey<Endereco>(e => e.ClienteId);
+
         modelBuilder.Entity<Cliente>().HasData(
                         new Cliente
                         {
