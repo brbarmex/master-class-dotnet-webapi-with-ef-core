@@ -1,6 +1,8 @@
 
 using SampleAPI.Repository;
 using AutoMapper;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace SampleAPI;
 
@@ -17,7 +19,11 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-      builder.Services.AddAutoMapper(typeof(Program));
+        builder.Services.AddAutoMapper(typeof(Program));
+
+       // builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+        builder.Services.AddControllers().AddJsonOptions(x =>{ x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)); });
 
         //To EF
         builder.Services.AddScoped<AppDbContext>();
