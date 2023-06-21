@@ -71,7 +71,8 @@ public class ClienteController : ControllerBase
     {
         try
         {
-            var model = _mapper.Map<Cliente>(clienteDTO);
+
+           var model = _mapper.Map<Cliente>(clienteDTO);
 
             _repository.Clientes.Add(model);
             var result = _repository.SaveChanges();
@@ -156,12 +157,12 @@ public class ClienteController : ControllerBase
 
     [HttpGet()]
     [Route("/cliente/status")]
-    public ActionResult<List<Cliente>> GetWithQuerie([FromQuery]bool status)
+    public ActionResult<List<Cliente>> GetWithQuerie([FromQuery]StatusDto status)
     {
 
         try
         {
-            var clientes = _repository.Clientes.Where(x => x.Status == status).ToList();
+            var clientes = _repository.Clientes.Where(x => x.Status.Equals(status)).ToList();
             if (clientes == null || clientes.Count == 0) {
                 return NotFound();
             }

@@ -40,7 +40,7 @@ public class AppDbContext : DbContext
                             Nome = "Maria",
                             Sobrenome="Fernandes",
                             Email="maria@mail.com",
-                            Status = true,
+                            //Status = true,
                         },
                         new Cliente
                         {
@@ -48,7 +48,7 @@ public class AppDbContext : DbContext
                             Nome = "João",
                             Sobrenome="Paulo",
                             Email="jp@mail.com",
-                            Status = true,
+                            //Status = true,
                         },
                         new Cliente
                         {
@@ -56,7 +56,7 @@ public class AppDbContext : DbContext
                             Nome = "Martin",
                             Sobrenome="Fowler",
                             Email="mf@mail.com",
-                            Status = false,
+                           // Status = false,
                         },
                         new Cliente
                         {
@@ -64,7 +64,7 @@ public class AppDbContext : DbContext
                             Nome = "Uncle",
                             Sobrenome="Bob",
                             Email="martin.c.@mail.com",
-                            Status = false,
+                           // Status = false,
                         },
                         new Cliente
                         {
@@ -72,7 +72,7 @@ public class AppDbContext : DbContext
                             Nome = "Barbara",
                             Sobrenome="Liskov",
                             Email="lsp@mail.com",
-                             Status = false,
+                           //  Status = false,
                         }
            );
     }
